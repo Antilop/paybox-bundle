@@ -4,6 +4,6 @@ namespace Antilop\Bundle\PayboxBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class MailjetBundle extends Bundle
+class PayboxBundle extends Bundle
 {
 }
