@@ -1,0 +1,21 @@
+{
+    "name": "antilop/paybox-bundle",
+    "type": "symfony-bundle",
+    "description": "Paybox bundle.",
+    "keywords": ["Paybox", "Symfony"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stéphanie Tilin",
+            "email": "stephanie@antilop.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Antilop\\Bundle\\PayboxBundle\\": "src/"
+        }
+    },
+    "require": {
+        "lib/curl": "^0.5.0"
+    }
+}
