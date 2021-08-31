@@ -53,8 +53,8 @@ class Response
      */
     public function __construct(RequestStack $requestStack, LoggerInterface $logger, EventDispatcherInterface $dispatcher, array $parameters)
     {
-        $this->request    = $requestStack->getCurrentRequest();
-        $this->logger     = $logger;
+        $this->request = $requestStack->getCurrentRequest();
+        $this->logger = $logger;
         $this->dispatcher = $dispatcher;
         $this->parameters = $parameters;
     }
@@ -171,7 +171,7 @@ class Response
         openssl_free_key($publicKey);
 
         $event = new PayboxResponseEvent($this->data, $result);
-        $this->dispatcher->dispatch(PayboxEvents::PAYBOX_IPN_RESPONSE, $event);
+        $this->dispatcher->dispatch($event, PayboxEvents::PAYBOX_IPN_RESPONSE);
 
         return $result;
     }

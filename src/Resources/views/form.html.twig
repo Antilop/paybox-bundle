@@ -1,0 +1,6 @@
+{% import '@Paybox/macro.html.twig' as paybox %}
+
+<form action="{{ url }}" method="POST" class="js-paybox-form">
+    {{ paybox.form(form) }}
+    <input type="submit" />
+</form>

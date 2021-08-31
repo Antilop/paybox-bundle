@@ -1,0 +1,7 @@
+paybox_submit:
+    path: /payment/submit
+    defaults: { _controller: paybox.controller.submit::indexAction }
+
+paybox_ipn:
+    path: /payment/ipn
+    defaults: { _controller: paybox.controller.ipn::indexAction }

@@ -14,13 +14,18 @@ class PayboxExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        if (!empty($config['paybox'])) {
+        if (!empty($config['parameters'])) {
+            if (empty($config['public_key'])) {
+                $config['public_key'] = __DIR__ . '/../Resources/config/paybox_public_key.pem';
+            }
             $config['parameters']['public_key'] = $config['public_key'];
-
-            $container->setParameter('paybox.servers', $config['servers']);
             $container->setParameter('paybox.parameters', $config['parameters']);
-            $container->setParameter('paybox.transport.class', $config['transport']);
         }
+
+        if (!empty($config['servers'])) {
+            $container->setParameter('paybox.servers', $config['servers']);
+        }
+
 
         $loader = new YamlFileLoader(
             $container,

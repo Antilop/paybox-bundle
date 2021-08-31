@@ -1,8 +1,3 @@
-parameters:
-    paybox.request_handler.class:              'Antilop\Bundle\PayboxBundle\Paybox\System\Base\Request'
-    paybox.request_cancellation_handler.class: 'Antilop\Bundle\PayboxBundle\Paybox\System\Cancellation\Request'
-    paybox.response_handler.class:             'Antilop\Bundle\PayboxBundle\Paybox\System\Base\Response'
-
 services:
     _defaults:
         public: true
@@ -21,11 +16,12 @@ services:
         tags:
             - { name: monolog.logger, channel: payment }
 
-    paybox.direc_plus.request_handler:
-        class: '%paybox.direc_plus.request_handler%'
-        arguments: ['%paybox.parameters%', '%paybox.servers%', '@logger', '@event_dispatcher', '@paybox.transport']
-        tags:
-            - { name: monolog.logger, channel: payment }
+    paybox.controller.submit:
+        class: 'Antilop\Bundle\PayboxBundle\Controller\SubmitController'
+
+    paybox.controller.ipn:
+        class: 'Antilop\Bundle\PayboxBundle\Controller\IpnController'
 
     paybox.transport:
-        class: '%paybox.transport.class%'
+        class: 'Antilop\Bundle\PayboxBundle\Transport\CurlTransport'
+

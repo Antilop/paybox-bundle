@@ -2,7 +2,7 @@
 
 namespace Antilop\Bundle\PayboxBundle\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class PayboxResponseEvent extends Event
 {
