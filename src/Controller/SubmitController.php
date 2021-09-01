@@ -4,7 +4,6 @@ namespace Antilop\Bundle\PayboxBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 
 class SubmitController extends AbstractController
@@ -24,7 +23,7 @@ class SubmitController extends AbstractController
             'PBX_REFUSE' => $this->generateUrl('paybox_submit_return_failed', array('status' => 'denied'), UrlGenerator::ABSOLUTE_URL),
             'PBX_ANNULE' => $this->generateUrl('paybox_submit_return_canceled', array('status' => 'canceled'), UrlGenerator::ABSOLUTE_URL),
             'PBX_RUF1' => 'POST',
-            'PBX_REPONDRE_A'   => $this->generateUrl('paybox_ipn', array('time' => time()), UrlGenerator::ABSOLUTE_URL),
+            'PBX_REPONDRE_A' => $this->generateUrl('paybox_ipn', array('time' => time()), UrlGenerator::ABSOLUTE_URL)
         ));
 
         return $this->render(
@@ -34,13 +33,5 @@ class SubmitController extends AbstractController
                 'form' => $paybox->getForm()->createView(),
             ]
         );
-    }
-
-    public function returnAction(Request $request, $status)
-    {
-        return $this->render('LexikPayboxBundle:Sample:return.html.twig', array(
-            'status'     => $status,
-            'parameters' => $request->query,
-        ));
     }
 }

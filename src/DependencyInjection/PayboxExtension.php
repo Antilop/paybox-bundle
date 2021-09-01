@@ -26,7 +26,6 @@ class PayboxExtension extends Extension
             $container->setParameter('paybox.servers', $config['servers']);
         }
 
-
         $loader = new YamlFileLoader(
             $container,
             new FileLocator(__DIR__ . '/../Resources/config')

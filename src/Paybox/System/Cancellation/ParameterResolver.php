@@ -50,9 +50,7 @@ class ParameterResolver extends AbstractParameterResolver
     protected function initResolver()
     {
         $this->resolver->setRequired($this->requiredParameters);
-
         $this->resolver->setDefined(array_diff($this->knownParameters, $this->requiredParameters));
-
         $this->initAllowed();
     }
 

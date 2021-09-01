@@ -9,7 +9,6 @@ class ParameterResolver extends AbstractParameterResolver
     /**
      * @var array All availables parameters for payments requests.
      */
-
     private $knownParameters = [
         'PBX_1EURO_CODEEXTERNE',
         'PBX_1EURO_DATA',

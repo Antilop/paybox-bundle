@@ -33,13 +33,13 @@ class Request extends AbstractRequest
     protected function initGlobals(array $parameters)
     {
         $this->globals = array(
-            'production'          => isset($parameters['production']) ? $parameters['production'] : false,
-            'currencies'          => $parameters['currencies'],
-            'site'                => $parameters['site'],
-            'rank'                => $parameters['rank'],
-            'login'               => $parameters['login'],
-            'hmac_key'            => $parameters['hmac']['key'],
-            'hmac_algorithm'      => $parameters['hmac']['algorithm'],
+            'production' => isset($parameters['production']) ? $parameters['production'] : false,
+            'currencies' => $parameters['currencies'],
+            'site' => $parameters['site'],
+            'rank' => $parameters['rank'],
+            'login' => $parameters['login'],
+            'hmac_key' => $parameters['hmac']['key'],
+            'hmac_algorithm' => $parameters['hmac']['algorithm'],
             'hmac_signature_name' => $parameters['hmac']['signature_name'],
         );
     }
@@ -49,10 +49,10 @@ class Request extends AbstractRequest
      */
     protected function initParameters()
     {
-        $this->setParameter('VERSION',     '001');
-        $this->setParameter('TYPE',        '001');
-        $this->setParameter('SITE',        $this->globals['site']);
-        $this->setParameter('MACH',        sprintf('%03d', $this->globals['rank']));
+        $this->setParameter('VERSION', '001');
+        $this->setParameter('TYPE', '001');
+        $this->setParameter('SITE', $this->globals['site']);
+        $this->setParameter('MACH', sprintf('%03d', $this->globals['rank']));
         $this->setParameter('IDENTIFIANT', $this->globals['login']);
     }
 

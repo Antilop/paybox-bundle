@@ -41,13 +41,13 @@ class Request extends AbstractRequest
     protected function initGlobals(array $parameters)
     {
         $this->globals = array(
-            'production'          => isset($parameters['production']) ? $parameters['production'] : false,
-            'currencies'          => $parameters['currencies'],
-            'site'                => $parameters['site'],
-            'rank'                => $parameters['rank'],
-            'login'               => $parameters['login'],
-            'hmac_key'            => $parameters['hmac']['key'],
-            'hmac_algorithm'      => $parameters['hmac']['algorithm'],
+            'production' => isset($parameters['production']) ? $parameters['production'] : false,
+            'currencies' => $parameters['currencies'],
+            'site' => $parameters['site'],
+            'rank' => $parameters['rank'],
+            'login' => $parameters['login'],
+            'hmac_key' => $parameters['hmac']['key'],
+            'hmac_algorithm' => $parameters['hmac']['algorithm'],
             'hmac_signature_name' => $parameters['hmac']['signature_name'],
         );
     }
@@ -57,10 +57,10 @@ class Request extends AbstractRequest
      */
     protected function initParameters()
     {
-        $this->setParameter('PBX_SITE',        $this->globals['site']);
-        $this->setParameter('PBX_RANG',        $this->globals['rank']);
+        $this->setParameter('PBX_SITE', $this->globals['site']);
+        $this->setParameter('PBX_RANG', $this->globals['rank']);
         $this->setParameter('PBX_IDENTIFIANT', $this->globals['login']);
-        $this->setParameter('PBX_HASH',        $this->globals['hmac_algorithm']);
+        $this->setParameter('PBX_HASH', $this->globals['hmac_algorithm']);
     }
 
     /**
@@ -140,23 +140,14 @@ class Request extends AbstractRequest
         $options['csrf_protection'] = false;
 
         $parameters = $this->getParameters();
-        // If symfony version is >=2.8 then we use the FQCN for form types
-        // Else we use the IDs.
-        if (method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            $builder = $this->factory->createNamedBuilder(
-                '',
-                'Symfony\Component\Form\Extension\Core\Type\FormType',
-                $parameters,
-                $options
-            );
-            foreach ($parameters as $key => $value) {
-                $builder->add($key, 'Symfony\Component\Form\Extension\Core\Type\HiddenType');
-            }
-        } else {
-            $builder = $this->factory->createNamedBuilder('', 'form', $parameters, $options);
-            foreach ($parameters as $key => $value) {
-                $builder->add($key, 'hidden');
-            }
+        $builder = $this->factory->createNamedBuilder(
+            '',
+            'Symfony\Component\Form\Extension\Core\Type\FormType',
+            $parameters,
+            $options
+        );
+        foreach ($parameters as $key => $value) {
+            $builder->add($key, 'Symfony\Component\Form\Extension\Core\Type\HiddenType');
         }
 
         return $builder->getForm();

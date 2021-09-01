@@ -37,9 +37,9 @@ abstract class AbstractRequest implements RequestInterface
      */
     public function __construct(array $parameters, array $servers)
     {
-        $this->parameters = array();
-        $this->globals    = array();
-        $this->servers    = $servers;
+        $this->parameters = [];
+        $this->globals = [];
+        $this->servers = $servers;
 
         $this->initGlobals($parameters);
         $this->initParameters();
@@ -125,8 +125,7 @@ abstract class AbstractRequest implements RequestInterface
      */
     protected function getServer()
     {
-        $servers = array();
-
+        $servers = [];
         if (isset($this->globals['production']) && (true === $this->globals['production'])) {
             $servers[] = $this->servers['primary'];
             $servers[] = $this->servers['secondary'];
@@ -163,9 +162,9 @@ abstract class AbstractRequest implements RequestInterface
     {
         $curl = curl_init();
 
-        curl_setopt($curl, CURLOPT_URL,            $url);
+        curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HEADER,         false);
+        curl_setopt($curl, CURLOPT_HEADER, false);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
         $output = curl_exec($curl);
         curl_close($curl);

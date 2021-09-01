@@ -88,15 +88,6 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-
-                // ->scalarNode('transport')
-                //     ->defaultValue('Antilop\Bundle\PayboxBundle\Transport\CurlTransport')
-                //     ->validate()
-                //     ->ifTrue(function($v) { return !class_exists($v); })
-                //         ->thenInvalid('Invalid "transport" parameter.')
-                //     ->end()
-                // ->end()
-
             ->end()
         ;
 
