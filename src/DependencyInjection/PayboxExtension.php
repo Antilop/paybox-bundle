@@ -26,6 +26,10 @@ class PayboxExtension extends Extension
             $container->setParameter('paybox.servers', $config['servers']);
         }
 
+        if (!empty($config['simulate_error'])) {
+            $container->setParameter('paybox.simulate_error.code', $config['simulate_error']['code']);
+        }
+
         $loader = new YamlFileLoader(
             $container,
             new FileLocator(__DIR__ . '/../Resources/config')

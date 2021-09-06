@@ -49,7 +49,12 @@ class Request extends AbstractRequest
             'hmac_key' => $parameters['hmac']['key'],
             'hmac_algorithm' => $parameters['hmac']['algorithm'],
             'hmac_signature_name' => $parameters['hmac']['signature_name'],
+            'simulate_error_enabled' => isset($parameters['simulate_error']['enabled']) ? $parameters['simulate_error']['enabled'] : false,
         );
+
+        if ($this->simulateErrorIsEnabled()) {
+            $this->globals['simulate_error_code'] = $parameters['simulate_error']['code'];
+        }
     }
 
     /**
@@ -166,5 +171,25 @@ class Request extends AbstractRequest
             $server['host'],
             $server['system_path']
         );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function simulateErrorIsEnabled()
+    {
+        return filter_var($this->globals['simulate_error_enabled'], FILTER_VALIDATE_BOOLEAN);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSimulateErrorCode()
+    {
+        if (!$this->simulateErrorIsEnabled()) {
+            return null;
+        }
+
+        return $this->globals['simulate_error_code'];
     }
 }
