@@ -16,7 +16,7 @@ class SubmitController extends AbstractController
             'PBX_CMD' => $reference,
             'PBX_DEVISE' => '978',
             'PBX_PORTEUR' => $email,
-            'PBX_RETOUR' => 'amount:M;reference:R;auto:A;error:E',
+            'PBX_RETOUR' => 'amount:M;reference:R;auto:A;error:E;idTransaction:S',
             'PBX_TOTAL' => $amount,
             'PBX_TYPEPAIEMENT' => 'CARTE',
             'PBX_TYPECARTE' => 'CB',
